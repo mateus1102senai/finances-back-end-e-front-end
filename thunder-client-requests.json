@@ -1,0 +1,271 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "API Gerenciamento Financeiro",
+  "dateExported": "2025-09-04",
+  "version": "1.1",
+  "folders": [
+    {
+      "name": "Users",
+      "id": "users-folder",
+      "requests": []
+    },
+    {
+      "name": "Transactions", 
+      "id": "transactions-folder",
+      "requests": []
+    },
+    {
+      "name": "Goals",
+      "id": "goals-folder", 
+      "requests": []
+    }
+  ],
+  "requests": [
+    {
+      "name": "Raiz da API",
+      "method": "GET",
+      "url": "http://localhost:5000/",
+      "description": "Endpoint raiz para verificar se a API está funcionando"
+    },
+    {
+      "name": "Criar Usuário",
+      "method": "POST",
+      "url": "http://localhost:5000/api/users",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"João Silva\",\n  \"email\": \"joao@email.com\",\n  \"password_hash\": \"senha123hash\"\n}"
+      },
+      "folder": "users-folder"
+    },
+    {
+      "name": "Listar Usuários",
+      "method": "GET", 
+      "url": "http://localhost:5000/api/users",
+      "folder": "users-folder"
+    },
+    {
+      "name": "Buscar Usuário por ID",
+      "method": "GET",
+      "url": "http://localhost:5000/api/users/1",
+      "folder": "users-folder"
+    },
+    {
+      "name": "Atualizar Usuário",
+      "method": "PUT",
+      "url": "http://localhost:5000/api/users/1",
+      "headers": [
+        {
+          "name": "Content-Type", 
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"João Silva Atualizado\",\n  \"email\": \"joao.novo@email.com\"\n}"
+      },
+      "folder": "users-folder"
+    },
+    {
+      "name": "Deletar Usuário",
+      "method": "DELETE",
+      "url": "http://localhost:5000/api/users/1", 
+      "folder": "users-folder"
+    },
+    {
+      "name": "Criar Transação - Receita",
+      "method": "POST",
+      "url": "http://localhost:5000/api/transactions",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"userId\": 1,\n  \"type\": \"income\",\n  \"amount\": 3000,\n  \"description\": \"Salário\",\n  \"category\": \"Trabalho\",\n  \"date\": \"2025-09-04\"\n}"
+      },
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Criar Transação - Despesa",
+      "method": "POST",
+      "url": "http://localhost:5000/api/transactions",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"userId\": 1,\n  \"type\": \"expense\",\n  \"amount\": 150,\n  \"description\": \"Mercado\",\n  \"category\": \"Alimentação\",\n  \"date\": \"2025-09-04\"\n}"
+      },
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Listar Transações",
+      "method": "GET",
+      "url": "http://localhost:5000/api/transactions?userId=1",
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Buscar Transação por ID",
+      "method": "GET", 
+      "url": "http://localhost:5000/api/transactions/1",
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Resumo Financeiro",
+      "method": "GET",
+      "url": "http://localhost:5000/api/transactions/summary?userId=1",
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Transações por Categoria",
+      "method": "GET",
+      "url": "http://localhost:5000/api/transactions/category/Alimentação?userId=1",
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Transações por Tipo - Receitas",
+      "method": "GET",
+      "url": "http://localhost:5000/api/transactions/type/income?userId=1", 
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Transações por Tipo - Despesas",
+      "method": "GET",
+      "url": "http://localhost:5000/api/transactions/type/expense?userId=1",
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Atualizar Transação",
+      "method": "PUT",
+      "url": "http://localhost:5000/api/transactions/1",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"amount\": 180,\n  \"description\": \"Mercado + Farmácia\"\n}"
+      },
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Deletar Transação",
+      "method": "DELETE",
+      "url": "http://localhost:5000/api/transactions/1",
+      "folder": "transactions-folder"
+    },
+    {
+      "name": "Criar Meta",
+      "method": "POST",
+      "url": "http://localhost:5000/api/goals",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"userId\": 1,\n  \"title\": \"Viagem para Europa\",\n  \"target_amount\": 10000,\n  \"current_amount\": 1500,\n  \"deadline\": \"2025-12-31\"\n}"
+      },
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Listar Metas",
+      "method": "GET",
+      "url": "http://localhost:5000/api/goals?userId=1",
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Buscar Meta por ID",
+      "method": "GET",
+      "url": "http://localhost:5000/api/goals/1",
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Progresso da Meta",
+      "method": "GET",
+      "url": "http://localhost:5000/api/goals/1/progress",
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Atualizar Progresso",
+      "method": "PUT",
+      "url": "http://localhost:5000/api/goals/1/progress",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"amount\": 2000\n}"
+      },
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Adicionar ao Progresso",
+      "method": "POST",
+      "url": "http://localhost:5000/api/goals/1/add-progress",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"amount\": 500\n}"
+      },
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Metas Próximas do Prazo",
+      "method": "GET",
+      "url": "http://localhost:5000/api/goals/upcoming?userId=1&days=30",
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Metas Concluídas",
+      "method": "GET",
+      "url": "http://localhost:5000/api/goals/completed?userId=1",
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Atualizar Meta",
+      "method": "PUT",
+      "url": "http://localhost:5000/api/goals/1",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Viagem para Europa - Atualizada\",\n  \"target_amount\": 12000\n}"
+      },
+      "folder": "goals-folder"
+    },
+    {
+      "name": "Deletar Meta",
+      "method": "DELETE",
+      "url": "http://localhost:5000/api/goals/1",
+      "folder": "goals-folder"
+    }
+  ]
+}

@@ -1,65 +1,62 @@
+
 import prisma from "../../prisma/prisma.js";
 
 class UserModel {
   // Obter todos os usuários
   async findAll() {
-    const users = await prisma.user.findMany();
-
-    return users;
+    return await prisma.user.findMany({
+      orderBy: {
+        id: "asc",
+      },
+    });
   }
 
-  // Obter um usuário pelo ID
+  // Obter usuário pelo ID
   async findById(id) {
-    const user = await prisma.user.findUnique({
+    return await prisma.user.findUnique({
       where: {
         id: Number(id),
       },
     });
-
-    return user;
   }
 
-  // Obter um usuário pelo email
+  // Obter usuário pelo email
   async findByEmail(email) {
-    const user = await prisma.user.findUnique({
+    return await prisma.user.findUnique({
       where: {
         email,
       },
     });
-
-    return user;
   }
 
-  // Criar um novo usuário
-  async create(data) {
-    const user = await prisma.user.create({
-      data,
+  // Criar novo usuário
+  async create({ name, email, password_hash }) {
+    return await prisma.user.create({
+      data: {
+        name,
+        email,
+        password_hash,
+      },
     });
-
-    return user;
   }
 
-  // Atualizar um usuário
+  // Atualizar usuário
   async update(id, data) {
-    const user = await prisma.user.update({
+    return await prisma.user.update({
       where: {
         id: Number(id),
       },
       data,
     });
-
-    return user;
   }
 
-  // Excluir um usuário
+  // Remover usuário
   async delete(id) {
-    await prisma.user.delete({
+    return await prisma.user.delete({
       where: {
         id: Number(id),
       },
     });
-
-    return true;
   }
 }
 
