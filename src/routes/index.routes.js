@@ -1,26 +1,25 @@
 import express from "express";
-import userRoutes from "./userRoutes.js";
-import transactionRoutes from "./transactionRoutes.js";
-import goalRoutes from "./goalRoutes.js";
+
+// Importar todas as rotas
+import authRouter from "./auth.routes.js";
+import animesRouter from "./animeRoutes.js";
+import personagensRouter from "./personagemRoutes.js";
+import collectionRouter from "./collectionRoutes.js";
+import cardRouter from "./cardRoutes.js";
+
+import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Definir rotas da API
-router.use("/users", userRoutes);
-router.use("/transactions", transactionRoutes);
-router.use("/goals", goalRoutes);
+// Rotas públicas
+router.use("/auth", authRouter);
+router.use("/collections", collectionRouter);
+router.use("/cards", cardRouter);
 
-// Rota raiz
-router.get("/", (req, res) => {
-  res.json({
-    message: "API de Gerenciamento Financeiro Pessoal",
-    version: "1.0.0",
-    endpoints: {
-      users: "/api/users",
-      transactions: "/api/transactions",
-      goals: "/api/goals"
-    }
-  });
-});
+// Rotas protegidas
+router.use(authMiddleware);
+
+router.use("/animes", animesRouter);
+router.use("/personagens", personagensRouter);
 
 export default router;
